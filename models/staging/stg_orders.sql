@@ -1,0 +1,16 @@
+{{config (materialized = 'view' )}}
+
+with raw_orders as (
+    select * from {{ source('olist','olist_orders_dataset')}}
+)
+
+select 
+ORDER_ID,
+CUSTOMER_ID,
+ORDER_STATUS,
+ORDER_PURCHASE_TIMESTAMP,
+ORDER_APPROVED_AT,
+ORDER_DELIVERED_CARRIER_DATE as ORDER_DELIVERED_CARRIER_DT,
+ORDER_DELIVERED_CUSTOMER_DATE as ORDER_DELIVERED_CUSTOMER_DT,
+ORDER_ESTIMATED_DELIVERY_DATE  as ORDER_ESTIMATED_DELIVERY_DT
+from raw_orders
