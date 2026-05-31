@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: olist
+    database: OLIST
+    schema: RAW
+    tables:
+      - name: olist_customers_dataset
+        description: Customer information
+      - name: olist_orders_dataset
+        description: Order header information
+      - name: olist_order_items_dataset
+        description: Individual items within each order
+      - name: olist_order_payments_dataset
+        description: Payment information per order
+      - name: olist_order_reviews_dataset
+        description: Customer reviews per order
+      - name: olist_products_dataset
+        description: Product information
+      - name: olist_sellers_dataset
+        description: Seller information
+      - name: product_category_name_translation
+        description: Portuguese to English category translation
