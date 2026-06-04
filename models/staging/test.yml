@@ -1,0 +1,131 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "This is the staging table containing the raw details of the orders details "  
+    columns:
+      - name: order_id
+        description: "unique id for each order "
+        tests:
+          - unique  -- should be unique
+          - not_null   -- should never be null
+
+      - name: customer_id
+        description: "unique id for each customer "
+        tests:
+          - unique
+          - not_null
+
+      - name: order_status
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - delivered
+                  - shipped
+                  - canceled
+                  - unavailable
+                  - invoiced
+                  - processing
+                  - created
+                  - approved
+
+  - name: stg_customers
+    description: "This is the staging table containing the raw details of the customer details "  
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_unique_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_products
+    description: "This is the staging table containing the product details "
+    columns:
+      - name: product_id
+        description: "unique id for each products"
+        tests:
+          - unique           
+          - not_null
+
+  - name: stg_order_items
+    description: "This is the staging table containing the raw details of the order_items with more descriptive details details "
+    columns:
+      - name: order_id
+        description: "unique id for each order "
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+
+      - name: ORDER_ITEM_ID
+        description: "unique id for each order_item "
+        tests:
+          - not_null
+
+      - name: product_id
+        description: "id for each product "
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+
+      - name: seller_id
+        description: "id for each seller "
+        tests:
+          - not_null
+
+  - name: stg_order_payments
+    description: "This is the staging table containing the raw details of the order_payments with more descriptive details "
+    columns:
+      - name: order_id
+        description: "unique id for each order "
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id   
+
+  - name: stg_order_reviews
+    description: "This is the staging table containing the raw details of the reviews for each orders "
+    columns:
+      - name: review_id
+        description: "unique id fro each reviews"
+        tests:
+          - unique
+          - not_null
+  
+      - name: order_id
+        description: "unique id for each order "
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+
+  - name: stg_sellers
+    description: "This is the staging table containing the raw details of the reviews for each orders "
+    columns:
+      - name: seller_id
+        description: "unique id for each seller"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_prod_cat_name_transl
+    description: "category code translation"
+    columns:
+      - name: c1
+        tests:
+          - unique
+          - not_null        
+
+         
+              

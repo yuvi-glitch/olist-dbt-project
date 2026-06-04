@@ -3,9 +3,9 @@ WITH customers AS (
 )
 
 SELECT
-    customer_id,   -- unique customer identifier
+    customer_unique_id,   -- unique customer identifier
     city,   -- city
     state,   -- state
-    COUNT(*) AS total_orders   -- how many orders per customer?
+    COUNT(customer_id) AS total_orders   -- how many orders per customer?
 FROM customers
-GROUP BY customer_id,city,state
+GROUP BY customer_unique_id,city,state

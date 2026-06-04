@@ -1,12 +1,12 @@
 {{
     config(
-        materialized = 'incremental',  -- what type?
-        unique_key = 'order_id'     -- which column uniquely identifies an order?
+        materialized = 'incremental',  
+        unique_key = 'order_id'     
     )
 }}
 
 WITH orders AS (
-    SELECT * FROM {{ ref('stg_orders') }}
+    SELECT * FROM {{ ref('int_orders_with_customers') }}
 ),
 payments AS (
     SELECT * FROM {{ ref('stg_order_payments') }}
