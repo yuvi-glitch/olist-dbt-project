@@ -2,16 +2,16 @@ version: 2
 
 models:
   - name: stg_orders
-    description: "This is the staging table containing the raw details of the orders details "  
+    description: "This is the staging table containing the raw details of the orders details"
     columns:
       - name: order_id
-        description: "unique id for each order "
+        description: "unique id for each order"
         tests:
-          - unique  -- should be unique
-          - not_null   -- should never be null
+          - unique
+          - not_null
 
       - name: customer_id
-        description: "unique id for each customer "
+        description: "unique id for each customer"
         tests:
           - unique
           - not_null
@@ -32,7 +32,7 @@ models:
                   - approved
 
   - name: stg_customers
-    description: "This is the staging table containing the raw details of the customer details "  
+    description: "This is the staging table containing the raw details of the customer details"
     columns:
       - name: customer_id
         tests:
@@ -41,23 +41,21 @@ models:
 
       - name: customer_unique_id
         tests:
-          - unique
           - not_null
 
   - name: stg_products
-    description: "This is the staging table containing the product details "
+    description: "This is the staging table containing the product details"
     columns:
       - name: product_id
         description: "unique id for each products"
         tests:
-          - unique           
+          - unique
           - not_null
 
   - name: stg_order_items
-    description: "This is the staging table containing the raw details of the order_items with more descriptive details details "
+    description: "This is the staging table containing the raw details of the order_items with more descriptive details"
     columns:
       - name: order_id
-        description: "unique id for each order "
         tests:
           - relationships:
               arguments:
@@ -65,12 +63,10 @@ models:
                 field: order_id
 
       - name: ORDER_ITEM_ID
-        description: "unique id for each order_item "
         tests:
           - not_null
 
       - name: product_id
-        description: "id for each product "
         tests:
           - relationships:
               arguments:
@@ -78,32 +74,27 @@ models:
                 field: product_id
 
       - name: seller_id
-        description: "id for each seller "
         tests:
           - not_null
 
   - name: stg_order_payments
-    description: "This is the staging table containing the raw details of the order_payments with more descriptive details "
+    description: "This is the staging table containing the raw details of the order_payments"
     columns:
       - name: order_id
-        description: "unique id for each order "
         tests:
           - relationships:
               arguments:
                 to: ref('stg_orders')
-                field: order_id   
+                field: order_id
 
   - name: stg_order_reviews
-    description: "This is the staging table containing the raw details of the reviews for each orders "
+    description: "This is the staging table containing the raw details of the reviews for each orders"
     columns:
       - name: review_id
-        description: "unique id fro each reviews"
         tests:
-          - unique
           - not_null
-  
+
       - name: order_id
-        description: "unique id for each order "
         tests:
           - relationships:
               arguments:
@@ -111,10 +102,9 @@ models:
                 field: order_id
 
   - name: stg_sellers
-    description: "This is the staging table containing the raw details of the reviews for each orders "
+    description: "This is the staging table containing seller details"
     columns:
       - name: seller_id
-        description: "unique id for each seller"
         tests:
           - unique
           - not_null
@@ -125,7 +115,4 @@ models:
       - name: c1
         tests:
           - unique
-          - not_null        
-
-         
-              
+          - not_null

@@ -1,11 +1,14 @@
 WITH customers AS (
-    SELECT * FROM {{ ref('stg_customers') }}  -- which model?
+
+    SELECT *
+    FROM {{ ref('stg_customers') }}
+
 )
 
 SELECT
-    customer_unique_id,   -- unique customer identifier
-    city,   -- city
-    state,   -- state
-    COUNT(customer_id) AS total_orders   -- how many orders per customer?
+    customer_unique_id,
+    MIN(city) AS city,
+    MIN(state) AS state,
+    COUNT(customer_id) AS total_orders
 FROM customers
-GROUP BY customer_unique_id,city,state
+GROUP BY customer_unique_id

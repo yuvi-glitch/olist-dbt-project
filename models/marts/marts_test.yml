@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "One row per unique customer with location and order count"
+    columns:
+      - name: customer_unique_id
+        tests:
+          - not_null
+          - unique
+
+      - name: city
+        tests:
+          - not_null
+
+      - name: state
+        tests:
+          - not_null
+
+  - name: dim_products
+    description: "One row per product with English category and seller location"
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_sellers
+    description: "One row per seller with revenue and order performance metrics"
+    columns:
+      - name: seller_id
+        tests:
+          - not_null
+          - unique
+
+      - name: total_revenue
+        tests:
+          - not_null
+
+  - name: fct_orders
+    description: "Incremental fact table with one row per order containing revenue, delivery and review metrics"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: payment_value
+        tests:
+          - not_null
+
+      - name: is_on_time
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - ON_time
+                  - Delayed
