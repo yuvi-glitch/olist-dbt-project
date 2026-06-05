@@ -20,16 +20,9 @@ models:
         tests:
           - not_null
           - accepted_values:
-              arguments:
-                values:
-                  - delivered
-                  - shipped
-                  - canceled
-                  - unavailable
-                  - invoiced
-                  - processing
-                  - created
-                  - approved
+              values: ['delivered', 'shipped', 'canceled',
+                       'unavailable', 'invoiced', 'processing',
+                       'created', 'approved']
 
   - name: stg_customers
     description: "This is the staging table containing the raw details of the customer details"
@@ -58,9 +51,8 @@ models:
       - name: order_id
         tests:
           - relationships:
-              arguments:
-                to: ref('stg_orders')
-                field: order_id
+              to: ref('stg_orders')
+              field: order_id
 
       - name: ORDER_ITEM_ID
         tests:
@@ -69,9 +61,8 @@ models:
       - name: product_id
         tests:
           - relationships:
-              arguments:
-                to: ref('stg_products')
-                field: product_id
+              to: ref('stg_products')
+              field: product_id
 
       - name: seller_id
         tests:
@@ -83,9 +74,8 @@ models:
       - name: order_id
         tests:
           - relationships:
-              arguments:
-                to: ref('stg_orders')
-                field: order_id
+              to: ref('stg_orders')
+              field: order_id
 
   - name: stg_order_reviews
     description: "This is the staging table containing the raw details of the reviews for each orders"
@@ -97,9 +87,8 @@ models:
       - name: order_id
         tests:
           - relationships:
-              arguments:
-                to: ref('stg_orders')
-                field: order_id
+              to: ref('stg_orders')
+              field: order_id
 
   - name: stg_sellers
     description: "This is the staging table containing seller details"

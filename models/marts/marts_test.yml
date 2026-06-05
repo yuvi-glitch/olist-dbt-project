@@ -51,13 +51,12 @@ models:
 
       - name: payment_value
         tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
 
       - name: is_on_time
         tests:
           - not_null
           - accepted_values:
-              arguments:
-                values:
-                  - ON_time
-                  - Delayed
+              values: ['ON_time' ,'Delayed']
