@@ -1,0 +1,6 @@
+payment_type,payment_description
+credit_card,Payment by credit card
+boleto,Brazilian payment slip
+voucher,Store voucher or gift card
+debit_card,Payment by debit card
+not_defined,Payment type not specified

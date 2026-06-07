@@ -1,0 +1,9 @@
+order_status,status_description,is_complete
+delivered,Order delivered to customer,true
+shipped,Order shipped to carrier,false
+canceled,Order canceled,true
+unavailable,Item unavailable,true
+invoiced,Invoice generated,false
+processing,Payment processing,false
+created,Order created,false
+approved,Payment approved,false
