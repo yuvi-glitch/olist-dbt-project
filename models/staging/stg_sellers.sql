@@ -7,6 +7,6 @@ with raw_sellers as (
 select 
 SELLER_ID,
 SELLER_ZIP_CODE_PREFIX,
-SELLER_CITY,
+{{ clean_string('SELLER_CITY')}} as SELLER_CITY,
 SELLER_STATE
 from raw_sellers
